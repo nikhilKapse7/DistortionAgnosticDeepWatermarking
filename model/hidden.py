@@ -4,7 +4,7 @@ import torch.nn as nn
 
 from options import HiDDenConfiguration
 from model.discriminator import Discriminator
-from model.encoder_decoder import EncoderDecoder
+from model.encoder_decoder import EncoderAttackDecoder
 from vgg_loss import VGGLoss
 from noise_layers.noiser import Noiser
 
@@ -19,7 +19,7 @@ class Hidden:
         """
         super(Hidden, self).__init__()
 
-        self.encoder_decoder = EncoderDecoder(configuration, noiser).to(device)
+        self.encoder_decoder = EncoderAttackDecoder(configuration, noiser).to(device)
         self.discriminator = Discriminator(configuration).to(device)
         self.optimizer_enc_dec = torch.optim.Adam(self.encoder_decoder.parameters())
         self.optimizer_discrim = torch.optim.Adam(self.discriminator.parameters())

@@ -13,7 +13,7 @@ from noise_layers.noiser import Noiser
 from noise_argparser import NoiseArgParser
 
 from train import train
-
+# python main.py new --name attacktesting --data-dir data --batch-size 128 
 
 def main():
     device = torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu')

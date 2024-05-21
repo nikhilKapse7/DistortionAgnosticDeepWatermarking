@@ -1,0 +1,8 @@
+numpy==1.23.3
+pandas==1.5.1
+Pillow==9.2.0
+Pillow==10.3.0
+plotly==5.22.0
+tensorboardX==2.6.2.2
+torch==1.13.1
+torchvision==0.14.1

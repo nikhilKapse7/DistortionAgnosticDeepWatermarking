@@ -5,7 +5,7 @@ from options import HiDDenConfiguration
 from noise_layers.noiser import Noiser
 
 
-class EncoderDecoder(nn.Module):
+class EncoderAttackDecoder(nn.Module):
     """
     Combines Encoder->Noiser->Decoder into single pipeline.
     The input is the cover image and the watermark message. The module inserts the watermark into the image
@@ -15,7 +15,7 @@ class EncoderDecoder(nn.Module):
     """
     def __init__(self, config: HiDDenConfiguration, noiser: Noiser):
 
-        super(EncoderDecoder, self).__init__()
+        super(EncoderAttackDecoder, self).__init__()
         self.encoder = Encoder(config)
         self.noiser = noiser
 

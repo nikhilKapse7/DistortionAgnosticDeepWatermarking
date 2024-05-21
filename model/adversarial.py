@@ -60,35 +60,3 @@ class AttackNetwork(nn.Module):
         x = self.leaky_relu(x)
         x = self.conv2(x)
         return x
-
-def train_attack_network(encoder, decoder, attack_network, dataloader, optimizer, alpha_adv1, alpha_adv2, device):
-    attack_network.train()
-    
-    for cover_images, messages in dataloader:
-        cover_images = cover_images.to(device)
-        messages = messages.to(device)
-        
-        optimizer.zero_grad()
-        
-        # Generate encoded images
-        encoded_images = encoder(cover_images, messages)
-        
-        # Generate adversarial images
-        adv_images = attack_network(encoded_images)
-        
-        # Compute losses
-        image_loss = F.mse_loss(adv_images, encoded_images)
-        decoded_messages = decoder(adv_images)
-        message_loss = F.mse_loss(decoded_messages, messages)
-        
-        adv_loss = alpha_adv1 * image_loss - alpha_adv2 * message_loss
-        adv_loss.backward()
-        
-        optimizer.step()
-
-# Define hyperparameters
-alpha_adv1 = 15.0
-alpha_adv2 = 1.0
-learning_rate = 0.001
-
-# # Instantiate models and optimizer

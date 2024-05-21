@@ -81,9 +81,9 @@ def save_checkpoint(model: Hidden, experiment_name: str, epoch: int, checkpoint_
     logging.info('Saving checkpoint to {}'.format(checkpoint_filename))
     checkpoint = {
         'enc-dec-model': model.encoder_decoder.state_dict(),
-        'enc-dec-optim': model.optimizer_enc_dec.state_dict(),
-        'discrim-model': model.discriminator.state_dict(),
-        'discrim-optim': model.optimizer_discrim.state_dict(),
+        'enc-dec-optim': model.optimizer.state_dict(),
+        # 'discrim-model': model.discriminator.state_dict(),
+        # 'discrim-optim': model.optimizer_discrim.state_dict(),
         'epoch': epoch
     }
     torch.save(checkpoint, checkpoint_filename)
